@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विवाह निमंत्रण - सुनिता & नवीन</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --maroon: #6b0f1a;
+            --deep-maroon: #4a0710;
+            --gold: #c9a84c;
+            --bright-gold: #e8c96d;
+            --pale-gold: #f5e6c3;
+            --cream: #fdf8ed;
+            --warm-white: #fffef9;
+            --text-dark: #2c1a0e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--deep-maroon);
+            font-family: 'Tiro Devanagari Hindi', serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* === ANIMATED BACKGROUND === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(107,15,26,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 60% 80%, rgba(201,168,76,0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 16px 60px;
+        }
+
+        /* === CARDS === */
+        .card {
+            background: var(--cream);
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 32px;
+            overflow: hidden;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.45s; }
+        .card:nth-child(5) { animation-delay: 0.6s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Decorative corner borders */
+        .card::before, .card::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            z-index: 2;
+        }
+        .card::before { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+        .card::after  { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+        .card-inner {
+            padding: 48px 40px;
+            position: relative;
+        }
+
+        /* Extra corner decorations */
+        .card-corner-tr, .card-corner-bl {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+            border-style: solid;
+            z-index: 2;
+        }
+        .card-corner-tr { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+        .card-corner-bl { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+
+        /* === HERO CARD === */
+        .hero-card {
+            background: linear-gradient(160deg, #fdf5e4 0%, #fbeecb 50%, #f7e5b4 100%);
+        }
+
+        .hero-card .card-inner {
+            text-align: center;
+        }
+
+        .mangal-mantra {
+            color: var(--maroon);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+            opacity: 0.85;
+        }
+
+        /* Decorative Om/Swastik divider */
+        .sacred-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .sacred-divider::before, .sacred-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+        }
+        .sacred-symbol {
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+
+        .hero-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            color: var(--maroon);
+            line-height: 1.1;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0px rgba(201,168,76,0.3);
+        }
+
+        .hero-subtitle {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        /* Floral separator */
+        .floral-line {
+            color: var(--gold);
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            margin: 24px 0;
+            opacity: 0.8;
+        }
+
+        /* Couple names */
+        .couple-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .bride-groom-name {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--maroon);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .ampersand-decor {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--gold);
+        }
+
+        /* Date badge */
+        .date-badge {
+            display: inline-block;
+            background: var(--maroon);
+            color: var(--bright-gold);
+            padding: 20px 48px;
+            border-radius: 2px;
+            margin-top: 24px;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(107,15,26,0.35);
+        }
+        .date-badge::before, .date-badge::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        .date-badge::before { left: 16px; }
+        .date-badge::after  { right: 16px; }
+        .date-badge p:first-child { font-size: 1.6rem; font-weight: 700; }
+        .date-badge p:last-child  { font-size: 1.1rem; opacity: 0.85; }
+
+        /* Sender info */
+        .sender-box {
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(201,168,76,0.5);
+            text-align: left;
+        }
+        .sender-label {
+            color: var(--maroon);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        .sender-name { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); }
+        .sender-detail { color: #5a3e2b; font-size: 1rem; line-height: 1.8; }
+        .sender-phone { color: var(--gold); font-weight: 700; margin-top: 8px; font-size: 1.05rem; }
+
+        /* === SCHEDULE CARD === */
+        .schedule-card { background: var(--warm-white); }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 700;
+            color: var(--maroon);
+            margin-bottom: 36px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--gold), var(--bright-gold));
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .event-card {
+            background: white;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 2px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(107,15,26,0.12);
+        }
+
+        .event-icon {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .event-name {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--maroon);
+            margin-bottom: 4px;
+        }
+        .event-date { font-size: 0.95rem; color: #5a3e2b; }
+        .event-time {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1.05rem;
+            margin-top: 6px;
+        }
+
+        .vidai-banner {
+            background: linear-gradient(135deg, var(--maroon) 0%, var(--deep-maroon) 100%);
+            color: var(--bright-gold);
+            padding: 24px;
+            text-align: center;
+            border-radius: 2px;
+            border: 2px solid var(--gold);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .vidai-banner p:first-child { font-size: 1.5rem; font-weight: 700; }
+        .vidai-banner p:last-child  { font-size: 1.1rem; opacity: 0.85; margin-top: 4px; }
+
+        /* === INVITATION CARD === */
+        .invite-card { background: var(--cream); }
+
+        .shloka-box {
+            background: rgba(107,15,26,0.06);
+            border-left: 3px solid var(--gold);
+            padding: 16px 24px;
+            margin-bottom: 28px;
+            font-style: italic;
+            font-size: 1rem;
+            color: #5a3e2b;
+            line-height: 1.8;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 600px) {
+            .profiles-grid { grid-template-columns: 1fr; }
+            .card-inner { padding: 36px 20px; }
+        }
+
+        .profile-box {
+            background: white;
+            border: 1px solid rgba(201,168,76,0.4);
+            padding: 28px;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--gold), var(--bright-gold), var(--gold));
+        }
+
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--maroon);
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(201,168,76,0.5);
+        }
+        .profile-detail { font-size: 0.95rem; color: #4a3020; line-height: 2; }
+        .profile-detail b { color: var(--maroon); }
+        .profile-residence { font-style: italic; font-weight: 700; color: var(--text-dark); }
+
+        .bhaanji-tag {
+            background: #fef9ec;
+            border: 1px solid rgba(201,168,76,0.5);
+            padding: 10px 14px;
+            border-radius: 2px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+        .bhaanji-tag .label { font-weight: 700; color: var(--maroon); }
+        .bhaanji-tag .value { color: #5a3e2b; }
+
+        .barat-note {
+            background: var(--maroon);
+            color: var(--bright-gold);
+            padding: 20px 28px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.7;
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 16px rgba(107,15,26,0.25);
+        }
+        .barat-note span { color: white; font-weight: 400; }
+
+        /* === FAMILY CARD === */
+        .family-card { background: var(--warm-white); }
+
+        .family-section { margin-bottom: 40px; }
+        .family-section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--maroon);
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .family-section-title::after {
+            content: '';
+            display: inline-block;
+            height: 2px;
+            width: 80px;
+            background: linear-gradient(to right, var(--gold), transparent);
+        }
+
+        .family-list { list-style: none; }
+        .family-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(201,168,76,0.3);
+            font-size: 1rem;
+            color: #3d2612;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .family-list li::before { content: '✦'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; margin-top: 5px; }
+
+        .naanihal-grid {
+            background: #fef9ec;
+            border: 1px solid rgba(201,168,76,0.4);
+            padding: 20px;
+            border-radius: 2px;
+        }
+
+        .siblings-box {
+            background: var(--maroon);
+            color: var(--bright-gold);
+            padding: 28px;
+            text-align: center;
+            margin-top: 8px;
+            border: 2px solid var(--gold);
+        }
+        .siblings-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 16px; }
+        .siblings-names {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 24px;
+            font-size: 1.1rem;
+        }
+        .siblings-names span { position: relative; }
+        .siblings-names span:not(:last-child)::after {
+            content: '•';
+            position: absolute;
+            right: -14px;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+        .highlight-name {
+            color: white;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: var(--gold);
+            text-underline-offset: 4px;
+        }
+
+        /* === FINAL CARD === */
+        .final-card {
+            background: linear-gradient(160deg, #fdf5e4 0%, #f8e8c0 100%);
+            text-align: center;
+        }
+
+        .family-big-name {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 700;
+            color: var(--maroon);
+            text-shadow: 2px 2px 6px rgba(107,15,26,0.15);
+            margin-bottom: 8px;
+        }
+        .family-tagline {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.6rem, 4vw, 2.5rem);
+            color: var(--gold);
+            margin-bottom: 48px;
+        }
+
+        .final-profiles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        @media (max-width: 560px) { .final-profiles { grid-template-columns: 1fr; } }
+
+        .final-profile-box {
+            background: white;
+            border: 1px solid rgba(201,168,76,0.4);
+            padding: 24px;
+            border-radius: 2px;
+            position: relative;
+        }
+        .final-profile-box h4 {
+            position: absolute;
+            top: -14px;
+            left: 20px;
+            background: var(--maroon);
+            color: var(--bright-gold);
+            padding: 4px 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .final-profile-box p { color: #3d2612; font-size: 0.95rem; line-height: 1.9; }
+        .final-profile-box .main-name { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .final-profile-box .sub-name { font-size: 0.85rem; color: #5a3e2b; }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--gold) 0%, #a87828 100%);
+            color: white;
+            padding: 18px 48px;
+            font-size: 1.2rem;
+            font-family: 'Tiro Devanagari Hindi', serif;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 2px;
+            box-shadow: 0 8px 24px rgba(107,15,26,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .map-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+        }
+        .map-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(107,15,26,0.4);
+        }
+
+        /* Top decorative banner */
+        .page-topper {
+            text-align: center;
+            color: var(--bright-gold);
+            font-size: 1.4rem;
+            letter-spacing: 10px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        /* Floating petals animation */
+        .petals {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .petal {
+            position: absolute;
+            top: -20px;
+            font-size: 1rem;
+            animation: fall linear infinite;
+            opacity: 0.5;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<div class="page-wrapper">
+
+    <div class="page-topper">✦ ✦ ✦ शुभ विवाह ✦ ✦ ✦</div>
+
+    <!-- HERO CARD -->
+    <div class="card hero-card">
+        <div class="card-corner-tr"></div>
+        <div class="card-corner-bl"></div>
+        <div class="card-inner">
+            <p class="mangal-mantra">।। श्री गणेशाय नमः ।।</p>
+            
+            <div class="sacred-divider">
+                <span class="sacred-symbol">🪔</span>
+                <span class="sacred-symbol" style="font-size:1rem;color:var(--gold);letter-spacing:4px;">ॐ</span>
+                <span class="sacred-symbol">🪔</span>
+            </div>
+
+            <h1 class="hero-title">उत्सव</h1>
+            <p class="hero-subtitle">परिणय बंधन का...</p>
+
+            <div class="floral-line">❧ ✿ ❧ ✿ ❧</div>
+
+            <div class="couple-section">
+                <div class="bride-groom-name">सौ. का सुनिता</div>
+                <div class="ampersand-decor">&amp;</div>
+                <div class="bride-groom-name">चि. नवीन</div>
+            </div>
+
+            <div class="floral-line">❧ ✿ ❧ ✿ ❧</div>
+
+            <div class="date-badge">
+                <p>प्रीतिभोज</p>
+                <p>06 अप्रैल 2026, सोमवार</p>
+            </div>
+
+            <div class="sender-box">
+                <p class="sender-label">प्रेषक :-</p>
+                <p class="sender-name">श्री राजकुमार जी ओला</p>
+                <p class="sender-detail">
+                    पुत्र स्व. श्री श्योमाल जी ओला<br>
+                    निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>
+                    जिला : झुन्झुनू (राज.)
+                </p>
+                <p class="sender-phone">📞 9166284663 &nbsp;&nbsp; 📞 9001835290</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHEDULE CARD -->
+    <div class="card schedule-card">
+        <div class="card-corner-tr"></div>
+        <div class="card-corner-bl"></div>
+        <div class="card-inner">
+            <h2 class="section-title">शुगुन क्षणिकाएं</h2>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-icon">🪔</div>
+                    <div class="event-name">श्री गणेश पूजन</div>
+                    <div class="event-date">25 मार्च 2026, बुधवार</div>
+                    <div class="event-time">प्रातः 10:15 बजे</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🌿</div>
+                    <div class="event-name">हल्द-हाथ (बान)</div>
+                    <div class="event-date">02 अप्रैल 2026, गुरुवार</div>
+                    <div class="event-time">सायः 04:15 बजे</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🎶</div>
+                    <div class="event-name">महिला संगीत</div>
+                    <div class="event-date">04 अप्रैल 2026, शनिवार</div>
+                    <div class="event-time">सायंः 08:15 बजे</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🍚</div>
+                    <div class="event-name">चाक-भात</div>
+                    <div class="event-date">06 अप्रैल 2026, सोमवार</div>
+                    <div class="event-time">दोप.: 01:15 बजे</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">🎺</div>
+                    <div class="event-name">बारात स्वागत</div>
+                    <div class="event-date">06 अप्रैल 2026, सोमवार</div>
+                    <div class="event-time">सायंः 06:15 बजे</div>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon">💍</div>
+                    <div class="event-name">पाणिग्रहण संस्कार</div>
+                    <div class="event-date">06 अप्रैल 2026, सोमवार</div>
+                    <div class="event-time" style="font-style:italic;">रात्रि शुभलग्नानुसार</div>
+                </div>
+            </div>
+
+            <div class="vidai-banner">
+                <p>✈ विदाई: 07 अप्रैल 2026, मंगलवार</p>
+                <p>प्रात कालः 04:15 बजे</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- INVITATION CARD -->
+    <div class="card invite-card">
+        <div class="card-corner-tr"></div>
+        <div class="card-corner-bl"></div>
+        <div class="card-inner">
+            <p class="mangal-mantra" style="text-align:center;">।। श्री गणेशाय नमः ।।</p>
+            
+            <div class="sacred-divider" style="margin:20px 0 28px;">
+                <span class="sacred-symbol">✦</span>
+                <span class="sacred-symbol">✦</span>
+                <span class="sacred-symbol">✦</span>
+            </div>
+
+            <div class="shloka-box">
+                "वकतुण्ड महाकाय, सूर्यकोटि समप्रभः।<br>
+                निर्विघ्नं कुरुमे देव, सर्वकार्येषु सर्वदा ॥"
+            </div>
+
+            <p style="font-size:1.05rem;color:#5a3e2b;margin-bottom:28px;line-height:1.8;">
+                ईश्वर की असीम अनुकंपा से हमारे परिवार में शुभ अवसर आया है, प्रसंग है हमारे लाड़ली के परिणय बंधन का...
+            </p>
+
+            <div class="profiles-grid">
+                <div class="profile-box">
+                    <p class="profile-name">सौ. का सुनिता</p>
+                    <div class="profile-detail">
+                        <p><b>सुपौत्री :</b> स्व. श्रीमती सावित्री देवी एवं स्व. श्री रामेश्वर लाल</p>
+                        <p><b>सुपुत्री :</b> श्रीमती ग्यारसी देवी एवं श्री महेश जी</p>
+                        <p class="profile-residence">निवासी : देल्सर कलां</p>
+                    </div>
+                    <div class="bhaanji-tag">
+                        <p class="label">भान्जी :</p>
+                        <p class="value">श्रीमती सरोज देवी एवं श्री राजकुमार जी ओला</p>
+                        <p style="font-size:0.8rem;color:#7a6050;margin-top:4px;">निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी</p>
+                    </div>
+                </div>
+
+                <div class="profile-box">
+                    <p class="profile-name">चि. नवीन</p>
+                    <div class="profile-detail">
+                        <p><b>सुपौत्र :</b> स्व. श्रीमती मन्नी देवी एवं स्व. श्री सुरजाराम जी सांरवणियां</p>
+                        <p><b>सुपुत्र :</b> श्रीमती चान्दकोरी देवी एवं श्री मोतीराम जी सांरवणियां</p>
+                        <p class="profile-residence">निवासी : बाय (नवलगढ़)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="barat-note">
+                नोट:- बारात दिनांक <span>06 अप्रैल 2026 सोमवार</span> को <span>बाय (नवलगढ़)</span> से
+                <span>काणिका की ढ़ाणी, गुढ़ाबावनी</span> पधारेगी।
+            </div>
+
+            <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--maroon);text-align:center;margin-top:36px;">
+                ।। मंगल परिणयोत्सव ।।
+            </p>
+            <p style="text-align:center;color:#5a3e2b;font-size:1rem;margin-top:12px;line-height:1.8;">
+                की सुमधुर बेला पर आपको सादर आमंत्रित करते हैं।<br>
+                कृपया इस शुभ अवसर पर वर-वधू को शुभ आशीर्वाद प्रदान कर हमें अनुग्रहित करें।
+            </p>
+        </div>
+    </div>
+
+    <!-- FAMILY CARD -->
+    <div class="card family-card">
+        <div class="card-corner-tr"></div>
+        <div class="card-corner-bl"></div>
+        <div class="card-inner">
+            <h2 class="section-title">परिवारजन</h2>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:36px;">
+                <div class="family-section">
+                    <p class="family-section-title">मौसीजी-मौसाजी</p>
+                    <ul class="family-list">
+                        <li>श्रीमती सुमन देवी-श्री महेन्द्र जी मावलिया <em style="font-size:0.85rem;color:#7a6050;">(सुबे. मेजर)</em></li>
+                        <li>श्रीमती सरिता देवी-श्री महिपाल जी मावलिया</li>
+                        <li>श्रीमती अनिता देवी-श्री महिपाल जी औलखा</li>
+                    </ul>
+                </div>
+                <div class="family-section">
+                    <p class="family-section-title">बुआजी-फुफाजी</p>
+                    <ul class="family-list">
+                        <li>मोहनी-श्री जयनारायण जी</li>
+                        <li>विमला-स्व. श्री नेमीचन्द जी</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="family-section">
+                <p class="family-section-title">ननिहाल पक्ष</p>
+                <div class="naanihal-grid">
+                    <ul class="family-list" style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;">
+                        <li>श्रीमती धापा देवी-स्व. श्री गणेशाराम जी ओला</li>
+                        <li>श्रीमती भागोती देवी-स्व. श्री श्योमाल जी ओला</li>
+                        <li>स्व. श्रीमती चनो देवी-मनीराम जी ओला</li>
+                        <li>श्रीमती बनारसी देवी-इन्द्राज जी ओला</li>
+                        <li style="grid-column:1/-1;">स्व. श्री विद्याधर जी ओला <em style="color:#7a6050;">(नानीजी-नानाजी)</em></li>
+                    </ul>
+                    <div style="margin-top:16px;padding-top:16px;border-top:1px dashed rgba(201,168,76,0.4);">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:0.9rem;font-style:italic;color:#4a3020;">
+                            <p>श्रीमती अमृता देवी - श्री कपिल जी ओला</p>
+                            <p>श्रीमती सुमन देवी - श्री सतवीर जी ओला <em>(सुबेदार)</em></p>
+                            <p>श्रीमती सरोज देवी - श्री रविन्द्र जी ओला <em>(Ex. Army)</em></p>
+                            <p style="color:var(--maroon);font-weight:700;">मामीजी - मामाजी</p>
+                        </div>
+                        <p style="text-align:center;font-size:0.8rem;color:#7a6050;margin-top:10px;">( निवासी - काणिका का ढ़ाणी, गुढ़ा बावनी )</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="siblings-box">
+                <p class="siblings-title">बहन - भाई</p>
+                <div class="siblings-names">
+                    <span>पूजा</span>
+                    <span>हर्षिता</span>
+                    <span>नेहा</span>
+                    <span>स्नेहा</span>
+                    <span>युवराज सिंह</span>
+                    <span class="highlight-name">दिनेश</span>
+                    <span>अंकित कुमार</span>
+                    <span>अनुज</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL CARD -->
+    <div class="card final-card">
+        <div class="card-corner-tr"></div>
+        <div class="card-corner-bl"></div>
+        <div class="card-inner">
+            <p class="mangal-mantra">।। श्री गणेशाय नमः ।।</p>
+            <div class="sacred-divider" style="margin:16px 0 24px;">
+                <span class="sacred-symbol">🌸</span>
+                <span class="sacred-symbol">🌸</span>
+                <span class="sacred-symbol">🌸</span>
+            </div>
+
+            <h2 class="family-big-name">ओला परिवार</h2>
+            <p class="family-tagline">आपका हार्दिक अभिनन्दन करता है।</p>
+
+            <div class="final-profiles">
+                <div class="final-profile-box" style="padding-top:36px;">
+                    <h4>उत्तराकांक्षीः</h4>
+                    <p class="main-name">श्री मनीराम जी ओला</p>
+                    <p class="sub-name">
+                        पुत्र स्व. श्री सुखदेवाराम जी ओला<br>
+                        निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>
+                        जिला : झुन्झुनू (राज.)
+                    </p>
+                </div>
+                <div class="final-profile-box" style="padding-top:36px;text-align:center;display:flex;flex-direction:column;justify-content:center;">
+                    <h4>दर्शनाभिलाषीः</h4>
+                    <p class="main-name" style="font-style:italic;color:var(--maroon);margin-top:16px;">
+                        समस्त ओला परिवार<br>एवं मित्रगण।
+                    </p>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:16px;">
+                <a href="https://maps.app.goo.gl/eDAxSCxbDGTMkCJh6" target="_blank" class="map-btn">
+                    📍 शादी का स्थान देखें (Google Maps)
+                </a>
+            </div>
+
+            <div class="sacred-divider" style="margin:36px 0 16px;">
+                <span class="sacred-symbol">✦</span>
+                <span class="sacred-symbol">✦</span>
+                <span class="sacred-symbol">✦</span>
+            </div>
+            <p style="text-align:center;font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--gold);">
+                With Blessings &amp; Joy
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Falling petals
+    const petalsContainer = document.getElementById('petals');
+    const symbols = ['🌸', '🌺', '✿', '❀', '🌼'];
+    for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        p.style.left = Math.random() * 100 + '%';
+        p.style.fontSize = (0.7 + Math.random() * 1.2) + 'rem';
+        p.style.animationDuration = (8 + Math.random() * 12) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.opacity = 0.2 + Math.random() * 0.4;
+        petalsContainer.appendChild(p);
+    }
+</script>
+</body>
+</html>
