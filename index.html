@@ -23,7 +23,6 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-
 html{scroll-behavior:smooth;}
 
 body{
@@ -34,6 +33,8 @@ body{
   min-height:100vh;
 }
 
+body.en{font-family:'Cormorant Garamond',serif;}
+
 body::before{
   content:'';position:fixed;inset:0;
   background-image:
@@ -42,165 +43,118 @@ body::before{
   pointer-events:none;z-index:0;
 }
 
-/* ═══════════════════════════════
-   STICKY MOBILE NAVBAR
-═══════════════════════════════ */
+/* ══ NAVBAR ══ */
 .mob-nav{
-  position:sticky;
-  top:0;z-index:100;
+  position:sticky;top:0;z-index:100;
   background:linear-gradient(135deg,var(--deep-maroon),var(--maroon));
   border-bottom:2px solid var(--gold);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 16px;
-  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 12px;height:var(--nav-h);
   box-shadow:0 4px 20px rgba(0,0,0,.4);
+  gap:8px;
 }
 
 .mob-nav-title{
   color:var(--gold-bright);
   font-family:'Great Vibes',cursive;
-  font-size:1.4rem;
-  line-height:1;
-  flex:1;
-  text-align:center;
+  font-size:1.4rem;line-height:1;
+  flex:1;text-align:center;
 }
 
-/* Hamburger button */
+/* Language toggle */
+.lang-toggle{
+  display:flex;align-items:center;
+  background:rgba(180,130,20,.15);
+  border:1px solid rgba(180,130,20,.4);
+  border-radius:20px;
+  padding:3px;
+  gap:2px;
+  flex-shrink:0;
+}
+.lang-btn{
+  background:none;border:none;cursor:pointer;
+  padding:5px 10px;border-radius:16px;
+  font-size:.72rem;font-weight:700;letter-spacing:.5px;
+  color:rgba(232,201,109,.6);
+  transition:all .25s ease;
+  -webkit-tap-highlight-color:transparent;
+  font-family:sans-serif;
+  white-space:nowrap;
+}
+.lang-btn.active{
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:white;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+
+/* Hamburger */
 .ham-btn{
   background:none;border:none;cursor:pointer;
-  padding:8px;
-  display:flex;flex-direction:column;gap:5px;
-  flex-shrink:0;
-  -webkit-tap-highlight-color:transparent;
+  padding:8px;display:flex;flex-direction:column;gap:5px;
+  flex-shrink:0;-webkit-tap-highlight-color:transparent;
 }
 .ham-btn span{
-  display:block;width:24px;height:2px;
-  background:var(--gold-bright);
-  border-radius:2px;
-  transition:all .3s ease;
-  transform-origin:center;
+  display:block;width:22px;height:2px;
+  background:var(--gold-bright);border-radius:2px;
+  transition:all .3s ease;transform-origin:center;
 }
 .ham-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .ham-btn.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .ham-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-/* Spacer so nav title is centered */
-.nav-spacer{width:40px;flex-shrink:0;}
-
-/* Dropdown drawer */
+/* Drawer */
 .mob-drawer{
-  position:fixed;
-  top:var(--nav-h);
-  left:0;right:0;
+  position:fixed;top:var(--nav-h);left:0;right:0;
   background:linear-gradient(160deg,var(--deep-maroon),#5a0e18);
   border-bottom:2px solid var(--gold);
-  z-index:99;
-  overflow:hidden;
-  max-height:0;
-  transition:max-height .35s cubic-bezier(.4,0,.2,1), opacity .3s ease;
-  opacity:0;
-  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  z-index:99;overflow:hidden;max-height:0;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1),opacity .3s ease;
+  opacity:0;box-shadow:0 8px 32px rgba(0,0,0,.5);
 }
 .mob-drawer.open{max-height:320px;opacity:1;}
-
 .drawer-inner{padding:20px 20px 24px;}
-
-.drawer-title{
-  color:var(--gold-bright);
-  font-size:.75rem;
-  letter-spacing:4px;
-  margin-bottom:16px;
-  text-align:center;
-  opacity:.8;
-}
-
+.drawer-title{color:var(--gold-bright);font-size:.75rem;letter-spacing:4px;
+  margin-bottom:16px;text-align:center;opacity:.8;}
 .drawer-btn{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  width:100%;
-  padding:14px 18px;
-  margin-bottom:10px;
-  border:1px solid rgba(180,130,20,.5);
-  background:rgba(180,130,20,.1);
-  color:var(--gold-bright);
-  font-family:'Tiro Devanagari Hindi',serif;
-  font-size:1rem;
-  font-weight:600;
-  text-decoration:none;
-  cursor:pointer;
-  transition:background .2s,transform .15s;
-  -webkit-tap-highlight-color:transparent;
-  letter-spacing:.5px;
+  display:flex;align-items:center;gap:14px;width:100%;
+  padding:14px 18px;margin-bottom:10px;
+  border:1px solid rgba(180,130,20,.5);background:rgba(180,130,20,.1);
+  color:var(--gold-bright);font-family:'Tiro Devanagari Hindi',serif;
+  font-size:1rem;font-weight:600;text-decoration:none;cursor:pointer;
+  transition:background .2s,transform .15s;-webkit-tap-highlight-color:transparent;
 }
 .drawer-btn:last-child{margin-bottom:0;}
 .drawer-btn:active{transform:scale(.98);background:rgba(180,130,20,.25);}
+.d-icon{font-size:1.3rem;flex-shrink:0;}
+.d-text{display:flex;flex-direction:column;text-align:left;}
+.d-label{font-size:1rem;font-weight:700;}
+.d-sub{font-size:.78rem;opacity:.75;margin-top:1px;font-weight:400;}
+.drawer-div{height:1px;background:linear-gradient(to right,transparent,rgba(180,130,20,.4),transparent);margin:14px 0;}
 
-.drawer-btn .d-icon{
-  font-size:1.3rem;
-  flex-shrink:0;
-}
-.drawer-btn .d-text{display:flex;flex-direction:column;text-align:left;}
-.drawer-btn .d-label{font-size:1rem;font-weight:700;}
-.drawer-btn .d-sub{font-size:.78rem;opacity:.75;margin-top:1px;font-weight:400;}
-
-/* Divider in drawer */
-.drawer-div{
-  height:1px;
-  background:linear-gradient(to right,transparent,rgba(180,130,20,.4),transparent);
-  margin:14px 0;
-}
-
-/* ═══════════════════════════════
-   PETALS
-═══════════════════════════════ */
+/* Petals */
 .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
 .petal{position:absolute;top:-30px;animation:petFall linear infinite;}
 @keyframes petFall{to{transform:translateY(105vh) rotate(540deg);opacity:0;}}
 
-/* ═══════════════════════════════
-   WRAPPER
-═══════════════════════════════ */
-.wrap{
-  position:relative;z-index:1;
-  max-width:880px;margin:0 auto;
-  padding:36px 14px 72px;
-}
+/* Wrapper */
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:36px 14px 72px;}
 @media(max-width:480px){.wrap{padding:24px 10px 60px;}}
 
-/* ═══════════════════════════════
-   PAGE HEAD
-═══════════════════════════════ */
+/* Page head */
 .pg-head{text-align:center;color:var(--gold-bright);margin-bottom:28px;animation:riseIn .6s ease both;}
 .pg-head-line{display:flex;align-items:center;justify-content:center;gap:12px;font-size:.8rem;letter-spacing:5px;}
 .pg-head-line::before,.pg-head-line::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-bright),transparent);}
 
-/* ═══════════════════════════════
-   CARD
-═══════════════════════════════ */
+/* Card */
 .card{
-  position:relative;margin-bottom:28px;
-  background:var(--cream);
-  border:1px solid rgba(180,130,20,.4);
-  animation:riseIn .7s ease both;
-  overflow:hidden;
+  position:relative;margin-bottom:28px;background:var(--cream);
+  border:1px solid rgba(180,130,20,.4);animation:riseIn .7s ease both;overflow:hidden;
 }
-.card:nth-child(2){animation-delay:.1s}
-.card:nth-child(3){animation-delay:.2s}
-.card:nth-child(4){animation-delay:.3s}
-.card:nth-child(5){animation-delay:.4s}
+.card:nth-child(2){animation-delay:.1s}.card:nth-child(3){animation-delay:.2s}
+.card:nth-child(4){animation-delay:.3s}.card:nth-child(5){animation-delay:.4s}
 .card:nth-child(6){animation-delay:.5s}
-
 @keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-.card::before{
-  content:'';position:absolute;inset:7px;
-  border:1px solid rgba(180,130,20,.28);
-  pointer-events:none;z-index:1;
-}
-
+.card::before{content:'';position:absolute;inset:7px;border:1px solid rgba(180,130,20,.28);pointer-events:none;z-index:1;}
 .card-corners{
   position:absolute;inset:0;pointer-events:none;z-index:2;
   background:
@@ -209,605 +163,581 @@ body::before{
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52'%3E%3Cpath d='M4 4 L4 48 L48 48' fill='none' stroke='%23b8860b' stroke-width='1.5'/%3E%3Ccircle cx='4' cy='48' r='3' fill='%23b8860b'/%3E%3C/svg%3E") bottom left no-repeat,
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52'%3E%3Cpath d='M48 4 L48 48 L4 48' fill='none' stroke='%23b8860b' stroke-width='1.5'/%3E%3Ccircle cx='48' cy='48' r='3' fill='%23b8860b'/%3E%3C/svg%3E") bottom right no-repeat;
 }
-
 .inner{padding:48px 40px;position:relative;}
 @media(max-width:600px){.inner{padding:36px 18px;}}
 @media(max-width:380px){.inner{padding:28px 14px;}}
 
-/* ═══════════════════════════════
-   GOLD RULE DIVIDER
-═══════════════════════════════ */
+/* Gold rule */
 .gold-rule{display:flex;align-items:center;gap:8px;margin:18px 0;}
 .gold-rule::before,.gold-rule::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-light),transparent);}
 .rule-gem{width:10px;height:10px;background:var(--gold-light);transform:rotate(45deg);flex-shrink:0;}
 .rule-gem-sm{width:6px;height:6px;background:var(--gold-pale);transform:rotate(45deg);flex-shrink:0;}
 
-/* ═══════════════════════════════
-   MANTRA
-═══════════════════════════════ */
-.mantra{
-  text-align:center;color:var(--maroon);
-  font-size:.9rem;font-weight:600;letter-spacing:2.5px;
-  margin-bottom:24px;opacity:.9;
-}
+/* Mantra */
+.mantra{text-align:center;color:var(--maroon);font-size:.9rem;font-weight:600;letter-spacing:2.5px;margin-bottom:24px;opacity:.9;}
 
-/* ═══════════════════════════════
-   HERO CARD
-═══════════════════════════════ */
+/* Hero */
 .hero-card{background:linear-gradient(160deg,#fdf6e8 0%,#f9edcc 55%,#f5e4b5 100%);}
-
-.hero-banner{
-  background:linear-gradient(135deg,var(--deep-maroon),var(--maroon),var(--mid-maroon));
-  padding:10px 0;text-align:center;
-  border-bottom:2px solid var(--gold);
-}
-.hero-banner-text{
-  color:var(--gold-bright);font-size:.78rem;letter-spacing:7px;
-  font-family:'Cormorant Garamond',serif;
-}
-
-.hero-title{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(3.5rem,12vw,7rem);
-  color:var(--maroon);line-height:1;margin-bottom:6px;
-}
-.hero-sub{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;font-size:clamp(1rem,3.5vw,1.25rem);
-  color:var(--gold);margin-bottom:6px;
-}
-
-.couple-row{
-  display:flex;align-items:center;justify-content:center;
-  gap:16px;flex-wrap:wrap;margin:24px 0;
-}
+.hero-banner{background:linear-gradient(135deg,var(--deep-maroon),var(--maroon),var(--mid-maroon));padding:10px 0;text-align:center;border-bottom:2px solid var(--gold);}
+.hero-banner-text{color:var(--gold-bright);font-size:.78rem;letter-spacing:7px;font-family:'Cormorant Garamond',serif;}
+.hero-title{font-family:'Great Vibes',cursive;font-size:clamp(3.5rem,12vw,7rem);color:var(--maroon);line-height:1;margin-bottom:6px;}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,3.5vw,1.25rem);color:var(--gold);margin-bottom:6px;}
+.couple-row{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin:24px 0;}
 .name-block{text-align:center;}
-.name-title{
-  font-size:clamp(1.5rem,5.5vw,2.8rem);
-  font-weight:700;color:var(--maroon);line-height:1.15;
-}
+.name-title{font-size:clamp(1.5rem,5.5vw,2.8rem);font-weight:700;color:var(--maroon);line-height:1.15;}
 .name-sub{font-size:.82rem;color:var(--text-mid);margin-top:2px;letter-spacing:.5px;}
-
-.vivaah-amp{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(2.5rem,8vw,5rem);
-  color:var(--gold-light);line-height:1;
-}
-
-.date-pill{
-  display:inline-flex;flex-direction:column;align-items:center;
-  background:var(--maroon);color:var(--gold-bright);
-  padding:16px clamp(24px,6vw,52px);
-  border:2px solid var(--gold);margin-top:16px;position:relative;
-}
-.date-pill::before,.date-pill::after{
-  content:'✦';position:absolute;top:50%;transform:translateY(-50%);
-  color:var(--gold-light);font-size:.9rem;
-}
-.date-pill::before{left:10px;}
-.date-pill::after{right:10px;}
+.vivaah-amp{font-family:'Great Vibes',cursive;font-size:clamp(2.5rem,8vw,5rem);color:var(--gold-light);line-height:1;}
+.date-pill{display:inline-flex;flex-direction:column;align-items:center;background:var(--maroon);color:var(--gold-bright);padding:16px clamp(24px,6vw,52px);border:2px solid var(--gold);margin-top:16px;position:relative;}
+.date-pill::before,.date-pill::after{content:'✦';position:absolute;top:50%;transform:translateY(-50%);color:var(--gold-light);font-size:.9rem;}
+.date-pill::before{left:10px;}.date-pill::after{right:10px;}
 .dp-event{font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;letter-spacing:1px;}
 .dp-date{font-size:clamp(.85rem,3vw,1rem);opacity:.9;margin-top:3px;}
-
-.sender-wrap{
-  margin-top:28px;padding-top:20px;
-  border-top:1px solid rgba(180,130,20,.4);
-  text-align:left;
-}
+.sender-wrap{margin-top:28px;padding-top:20px;border-top:1px solid rgba(180,130,20,.4);text-align:left;}
 .sender-label{color:var(--maroon);font-weight:700;font-size:.95rem;margin-bottom:6px;}
 .sender-name{font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;color:var(--text);margin-bottom:4px;}
 .sender-info{color:var(--text-mid);font-size:.9rem;line-height:1.9;}
 .sender-phone{color:var(--gold);font-weight:700;margin-top:8px;font-size:.95rem;}
 
-/* ═══════════════════════════════
-   SECTION TITLE
-═══════════════════════════════ */
-.sec-title{
-  text-align:center;
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.5rem,5vw,2.3rem);
-  font-weight:600;color:var(--maroon);
-  margin-bottom:8px;
-}
-.sec-title-under{
-  width:80px;height:2px;margin:0 auto 28px;
-  background:linear-gradient(to right,transparent,var(--gold-light),transparent);
-}
+/* Section title */
+.sec-title{text-align:center;font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:600;color:var(--maroon);margin-bottom:8px;}
+.sec-title-under{width:80px;height:2px;margin:0 auto 28px;background:linear-gradient(to right,transparent,var(--gold-light),transparent);}
 
-/* ═══════════════════════════════
-   EVENTS GRID
-═══════════════════════════════ */
-.events-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px;margin-bottom:16px;
-}
+/* Events */
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;}
 @media(max-width:460px){.events-grid{grid-template-columns:1fr 1fr;gap:10px;}}
 @media(max-width:320px){.events-grid{grid-template-columns:1fr;}}
-
-.ev{
-  background:var(--ivory);
-  border:1px solid rgba(180,130,20,.25);
-  border-left:3px solid var(--gold-light);
-  padding:14px 14px 12px;
-  transition:transform .2s,box-shadow .2s;
-}
+.ev{background:var(--ivory);border:1px solid rgba(180,130,20,.25);border-left:3px solid var(--gold-light);padding:14px 14px 12px;transition:transform .2s,box-shadow .2s;}
 .ev:hover,.ev:active{transform:translateY(-3px);box-shadow:0 8px 20px rgba(62,7,16,.1);}
 .ev-icon{font-size:1.3rem;margin-bottom:6px;display:block;}
 .ev-name{font-size:clamp(.9rem,2.5vw,1.1rem);font-weight:700;color:var(--maroon);margin-bottom:3px;}
 .ev-date{font-size:clamp(.75rem,2vw,.88rem);color:var(--text-mid);}
 .ev-time{font-size:clamp(.85rem,2.2vw,1rem);font-weight:700;color:var(--gold);margin-top:5px;}
-
-.vidai{
-  background:linear-gradient(135deg,var(--deep-maroon),var(--maroon));
-  border:2px solid var(--gold);color:var(--gold-bright);
-  text-align:center;padding:18px 16px;position:relative;overflow:hidden;
-}
+.vidai{background:linear-gradient(135deg,var(--deep-maroon),var(--maroon));border:2px solid var(--gold);color:var(--gold-bright);text-align:center;padding:18px 16px;position:relative;overflow:hidden;}
 .vidai::before{content:'';position:absolute;inset:4px;border:1px solid rgba(232,201,109,.18);pointer-events:none;}
 .vidai-title{font-size:clamp(1.1rem,4vw,1.4rem);font-weight:700;}
 .vidai-date{font-size:clamp(1rem,3.5vw,1.2rem);font-weight:700;margin-top:5px;}
 .vidai-time{font-size:.9rem;opacity:.8;margin-top:3px;}
 
-/* ═══════════════════════════════
-   SHLOKA
-═══════════════════════════════ */
-.shloka{
-  background:rgba(107,15,26,.06);
-  border-left:3px solid var(--gold-light);
-  padding:14px 18px;margin-bottom:20px;
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:clamp(.95rem,2.8vw,1.1rem);
-  color:var(--text-mid);line-height:2;
-}
+/* Shloka */
+.shloka{background:rgba(107,15,26,.06);border-left:3px solid var(--gold-light);padding:14px 18px;margin-bottom:20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.95rem,2.8vw,1.1rem);color:var(--text-mid);line-height:2;}
 
-/* ═══════════════════════════════
-   PROFILES
-═══════════════════════════════ */
-.profiles-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;
-}
+/* Profiles */
+.profiles-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
 @media(max-width:520px){.profiles-grid{grid-template-columns:1fr;}}
-
-.profile-card{
-  background:var(--ivory);
-  border:1px solid rgba(180,130,20,.3);
-  padding:20px;position:relative;overflow:hidden;
-}
-.profile-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(to right,var(--gold),var(--gold-bright),var(--gold));
-}
-.profile-name{
-  font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;color:var(--maroon);
-  padding-bottom:8px;margin-bottom:10px;
-  border-bottom:1px dashed rgba(180,130,20,.4);
-}
+.profile-card{background:var(--ivory);border:1px solid rgba(180,130,20,.3);padding:20px;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--gold-bright),var(--gold));}
+.profile-name{font-size:clamp(1.2rem,4vw,1.5rem);font-weight:700;color:var(--maroon);padding-bottom:8px;margin-bottom:10px;border-bottom:1px dashed rgba(180,130,20,.4);}
 .profile-line{font-size:clamp(.8rem,2.2vw,.9rem);color:var(--text-mid);line-height:1.9;}
 .profile-line b{color:var(--maroon);}
 .profile-res{font-style:italic;font-weight:700;color:var(--text);margin-top:4px;font-size:.85rem;}
-
-.bhaanji{
-  margin-top:10px;padding:8px 12px;
-  background:rgba(180,130,20,.08);
-  border:1px solid rgba(180,130,20,.22);
-  font-size:.82rem;
-}
+.bhaanji{margin-top:10px;padding:8px 12px;background:rgba(180,130,20,.08);border:1px solid rgba(180,130,20,.22);font-size:.82rem;}
 .bhaanji .bl{font-weight:700;color:var(--maroon);}
 .bhaanji .bv{color:var(--text-mid);}
-
-.barat-note{
-  background:var(--deep-maroon);border:2px solid var(--gold);
-  color:var(--gold-bright);padding:16px 18px;text-align:center;
-  font-size:clamp(.88rem,2.5vw,1.05rem);font-weight:600;line-height:1.9;
-}
+.barat-note{background:var(--deep-maroon);border:2px solid var(--gold);color:var(--gold-bright);padding:16px 18px;text-align:center;font-size:clamp(.88rem,2.5vw,1.05rem);font-weight:600;line-height:1.9;}
 .barat-note span{color:white;font-weight:400;}
 
-/* ═══════════════════════════════
-   FAMILY CARD
-═══════════════════════════════ */
+/* Family */
 .family-card{background:var(--ivory);}
-
-.fam-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;
-}
+.fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;}
 @media(max-width:500px){.fam-grid{grid-template-columns:1fr;gap:16px;}}
-
-.fam-sec-title{
-  font-size:1.1rem;font-weight:700;color:var(--maroon);
-  margin-bottom:10px;display:flex;align-items:center;gap:8px;
-}
+.fam-sec-title{font-size:1.1rem;font-weight:700;color:var(--maroon);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
 .fam-sec-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold-pale),transparent);}
-
 .fam-list{list-style:none;}
-.fam-list li{
-  padding:8px 0;border-bottom:1px dashed rgba(180,130,20,.2);
-  font-size:clamp(.8rem,2.2vw,.92rem);color:var(--text-mid);
-  display:flex;gap:7px;align-items:flex-start;line-height:1.5;
-}
+.fam-list li{padding:8px 0;border-bottom:1px dashed rgba(180,130,20,.2);font-size:clamp(.8rem,2.2vw,.92rem);color:var(--text-mid);display:flex;gap:7px;align-items:flex-start;line-height:1.5;}
 .fam-list li::before{content:'◆';color:var(--gold-light);font-size:.5rem;margin-top:5px;flex-shrink:0;}
-
-.naanihal-box{
-  background:rgba(180,130,20,.06);
-  border:1px solid rgba(180,130,20,.22);
-  padding:14px;margin-top:8px;
-}
-.naanihal-box .fam-list{
-  display:grid;grid-template-columns:1fr 1fr;gap:0 16px;
-}
+.naanihal-box{background:rgba(180,130,20,.06);border:1px solid rgba(180,130,20,.22);padding:14px;margin-top:8px;}
+.naanihal-box .fam-list{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}
 @media(max-width:480px){.naanihal-box .fam-list{grid-template-columns:1fr;}}
-
-.siblings{
-  background:linear-gradient(135deg,var(--maroon),var(--deep-maroon));
-  border:2px solid var(--gold);
-  padding:24px 18px;text-align:center;
-  position:relative;overflow:hidden;margin-top:8px;
-}
+.siblings{background:linear-gradient(135deg,var(--maroon),var(--deep-maroon));border:2px solid var(--gold);padding:24px 18px;text-align:center;position:relative;overflow:hidden;margin-top:8px;}
 .siblings::before{content:'';position:absolute;inset:5px;border:1px solid rgba(232,201,109,.15);pointer-events:none;}
-.sib-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.4rem,5vw,1.8rem);font-weight:600;
-  color:var(--gold-bright);margin-bottom:14px;
-}
+.sib-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,5vw,1.8rem);font-weight:600;color:var(--gold-bright);margin-bottom:14px;}
 .sib-names{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;}
 .sib-name{color:rgba(245,230,195,.85);font-size:clamp(.9rem,2.8vw,1.05rem);position:relative;}
 .sib-name:not(:last-child)::after{content:'·';position:absolute;right:-10px;color:var(--gold-light);opacity:.5;}
 .sib-name.hl{color:white;font-weight:700;text-decoration:underline;text-decoration-color:var(--gold-light);text-underline-offset:3px;}
 
-/* ═══════════════════════════════
-   FINAL CARD
-═══════════════════════════════ */
+/* Final */
 .final-card{background:linear-gradient(160deg,#fdf6e8,#f9edcc);}
-
-.family-name{
-  font-family:'Cinzel Decorative',serif;
-  font-size:clamp(1.6rem,6.5vw,3.8rem);
-  color:var(--maroon);margin-bottom:6px;line-height:1.2;
-}
-.family-tag{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(1.5rem,5vw,2.8rem);
-  color:var(--gold-light);margin-bottom:36px;
-}
-
-.final-profiles{
-  display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px;text-align:left;
-}
+.family-name{font-family:'Cinzel Decorative',serif;font-size:clamp(1.6rem,6.5vw,3.8rem);color:var(--maroon);margin-bottom:6px;line-height:1.2;}
+.family-tag{font-family:'Great Vibes',cursive;font-size:clamp(1.5rem,5vw,2.8rem);color:var(--gold-light);margin-bottom:36px;}
+.final-profiles{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px;text-align:left;}
 @media(max-width:480px){.final-profiles{grid-template-columns:1fr;}}
-
-.fp-box{
-  background:white;border:1px solid rgba(180,130,20,.3);
-  padding:26px 18px 18px;position:relative;
-}
-.fp-box h4{
-  position:absolute;top:-13px;left:14px;
-  background:var(--maroon);color:var(--gold-bright);
-  padding:3px 14px;font-size:.75rem;font-weight:700;letter-spacing:1px;
-  border:1px solid var(--gold);
-}
+.fp-box{background:white;border:1px solid rgba(180,130,20,.3);padding:26px 18px 18px;position:relative;}
+.fp-box h4{position:absolute;top:-13px;left:14px;background:var(--maroon);color:var(--gold-bright);padding:3px 14px;font-size:.75rem;font-weight:700;letter-spacing:1px;border:1px solid var(--gold);}
 .fp-name{font-size:clamp(1.1rem,3.5vw,1.35rem);font-weight:700;color:var(--text);margin-bottom:5px;}
 .fp-info{font-size:clamp(.78rem,2.2vw,.88rem);color:var(--text-mid);line-height:1.9;}
-
-/* Map button */
-.map-btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  background:linear-gradient(135deg,var(--gold-light),var(--gold));
-  color:white;padding:14px clamp(20px,5vw,44px);
-  font-size:clamp(.9rem,3vw,1.1rem);
-  font-family:'Tiro Devanagari Hindi',serif;font-weight:700;
-  text-decoration:none;border:2px solid rgba(255,255,255,.2);
-  transition:all .25s ease;position:relative;overflow:hidden;
-  width:100%;max-width:360px;
-}
+.map-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:white;padding:14px clamp(20px,5vw,44px);font-size:clamp(.9rem,3vw,1.1rem);font-family:'Tiro Devanagari Hindi',serif;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,.2);transition:all .25s ease;position:relative;overflow:hidden;width:100%;max-width:360px;}
 .map-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);}
 .map-btn:hover,.map-btn:active{transform:translateY(-2px);box-shadow:0 10px 28px rgba(62,7,16,.3);}
+.closing{font-family:'Great Vibes',cursive;font-size:clamp(1.5rem,5vw,2rem);color:var(--gold-light);text-align:center;margin-top:28px;}
 
-.closing{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(1.5rem,5vw,2rem);
-  color:var(--gold-light);text-align:center;margin-top:28px;
-}
-
-/* ═══════════════════════════════
-   OVERLAY (closes drawer on outside tap)
-═══════════════════════════════ */
-.overlay{
-  display:none;position:fixed;inset:0;z-index:98;
-  background:rgba(0,0,0,.3);
-}
+/* Overlay */
+.overlay{display:none;position:fixed;inset:0;z-index:98;background:rgba(0,0,0,.3);}
 .overlay.show{display:block;}
+
+/* ══ LANGUAGE SWITCHING ══ */
+/* Hide opposite language — default body class is 'hi' */
+body.hi [data-en]{display:none;}
+body.en [data-hi]{display:none;}
 </style>
 </head>
-<body>
+<body class="hi">
 
-<!-- ══ STICKY MOBILE NAVBAR ══ -->
+<!-- ══ NAVBAR ══ -->
 <nav class="mob-nav">
-  <div class="nav-spacer"></div>
-  <div class="mob-nav-title">Sunita     &amp;    Naveen   ✦</div>
-  <button class="ham-btn" id="hamBtn" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-spacer" style="width:36px;flex-shrink:0;"></div>
+  <div class="mob-nav-title">
+    <span data-hi>सुनिता &amp; नवीन ✦</span>
+    <span data-en>Sunita &amp; Naveen ✦</span>
+  </div>
+
+  <!-- Language toggle -->
+  <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btnHi" onclick="setLang('hi')">हिं</button>
+      <button class="lang-btn" id="btnEn" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="ham-btn" id="hamBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- Drawer -->
 <div class="mob-drawer" id="drawer">
   <div class="drawer-inner">
-    <p class="drawer-title">त्वरित सम्पर्क</p>
-
+    <p class="drawer-title">
+      <span data-hi>त्वरित सम्पर्क</span>
+      <span data-en>QUICK CONTACT</span>
+    </p>
     <a href="tel:9166284663" class="drawer-btn">
       <span class="d-icon">📞</span>
       <span class="d-text">
-        <span class="d-label">कॉल करें — राजकुमार जी</span>
+        <span class="d-label">
+          <span data-hi>कॉल करें — राजकुमार जी</span>
+          <span data-en>Call — Rajkumar Ji</span>
+        </span>
         <span class="d-sub">9166284663</span>
       </span>
     </a>
-
     <a href="tel:9001835290" class="drawer-btn">
       <span class="d-icon">📞</span>
       <span class="d-text">
-        <span class="d-label">कॉल करें — रविन्द्र जी ओला</span>
+        <span class="d-label">
+          <span data-hi>कॉल करें — रविन्द्र जी ओला</span>
+          <span data-en>Call — Ravindra Ji Ola</span>
+        </span>
         <span class="d-sub">9001835290</span>
       </span>
     </a>
-
     <div class="drawer-div"></div>
-
     <a href="https://maps.app.goo.gl/eDAxSCxbDGTMkCJh6" target="_blank" class="drawer-btn">
       <span class="d-icon">📍</span>
       <span class="d-text">
-        <span class="d-label">Google Maps पर खोलें</span>
-        <span class="d-sub">काणिका की ढ़ाणी, गुढ़ाबावनी</span>
+        <span class="d-label">
+          <span data-hi>Google Maps पर खोलें</span>
+          <span data-en>Open on Google Maps</span>
+        </span>
+        <span class="d-sub">
+          <span data-hi>काणिका की ढ़ाणी, गुढ़ाबावनी</span>
+          <span data-en>Kanika ki Dhani, Gudha Bawni</span>
+        </span>
       </span>
     </a>
   </div>
 </div>
 
-<!-- Overlay -->
 <div class="overlay" id="overlay"></div>
-
-<!-- ══ PETALS ══ -->
 <div class="petals" id="petals"></div>
 
-<!-- ══ CONTENT ══ -->
 <div class="wrap">
 
   <div class="pg-head">
-    <div class="pg-head-line">✦ &nbsp; शुभ विवाह &nbsp; ✦</div>
+    <div class="pg-head-line">
+      <span data-hi>✦ &nbsp; शुभ विवाह &nbsp; ✦</span>
+      <span data-en>✦ &nbsp; AUSPICIOUS WEDDING &nbsp; ✦</span>
+    </div>
   </div>
 
-  <!-- HERO -->
+  <!-- ══ HERO CARD ══ -->
   <div class="card hero-card">
     <div class="card-corners"></div>
     <div class="hero-banner">
-      <div class="hero-banner-text">॥ &nbsp; ओला परिवार &nbsp; ॥</div>
+      <div class="hero-banner-text">
+        <span data-hi>॥ &nbsp; ओला परिवार &nbsp; ॥</span>
+        <span data-en>॥ &nbsp; OLA FAMILY &nbsp; ॥</span>
+      </div>
     </div>
     <div class="inner" style="text-align:center;">
-      <p class="mantra">।। श्री गणेशाय नमः ।।</p>
+      <p class="mantra">
+        <span data-hi>।। श्री गणेशाय नमः ।।</span>
+        <span data-en>॥ Shri Ganeshaya Namah ॥</span>
+      </p>
       <div class="gold-rule"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
-      <h1 class="hero-title">उत्सव</h1>
-      <p class="hero-sub">परिणय बंधन का...</p>
+
+      <h1 class="hero-title">
+        <span data-hi>उत्सव</span>
+        <span data-en style="font-size:clamp(3rem,10vw,6rem);">Utsav</span>
+      </h1>
+      <p class="hero-sub">
+        <span data-hi>परिणय बंधन का...</span>
+        <span data-en>The Wedding Celebration...</span>
+      </p>
+
       <div class="gold-rule" style="margin:20px 0;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
+
       <div class="couple-row">
         <div class="name-block">
-          <div class="name-title">सौ. का सुनिता</div>
-          <div class="name-sub">वधू</div>
+          <div class="name-title">
+            <span data-hi>सौ. का सुनिता</span>
+            <span data-en> Sunita</span>
+          </div>
+          <div class="name-sub">
+            <span data-hi>वधू</span>
+            <span data-en>Bride</span>
+          </div>
         </div>
         <div class="vivaah-amp">&amp;</div>
         <div class="name-block">
-          <div class="name-title">चि. नवीन</div>
-          <div class="name-sub">वर</div>
+          <div class="name-title">
+            <span data-hi>चि. नवीन</span>
+            <span data-en> Naveen</span>
+          </div>
+          <div class="name-sub">
+            <span data-hi>वर</span>
+            <span data-en>Groom</span>
+          </div>
         </div>
       </div>
+
       <div class="gold-rule" style="margin:16px 0;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
+
       <div class="date-pill">
-        <span class="dp-event">प्रीतिभोज</span>
-        <span class="dp-date">06 अप्रैल 2026, सोमवार</span>
+        <span class="dp-event">
+          <span data-hi>प्रीतिभोज</span>
+          <span data-en>Pre-Wedding Feast</span>
+        </span>
+        <span class="dp-date">
+          <span data-hi>06 अप्रैल 2026, सोमवार</span>
+          <span data-en>06 April 2026, Monday</span>
+        </span>
       </div>
+
       <div class="sender-wrap">
-        <p class="sender-label">प्रेषक :-</p>
-        <p class="sender-name">श्री राजकुमार जी ओला</p>
+        <p class="sender-label">
+          <span data-hi>प्रेषक :-</span>
+          <span data-en>From :-</span>
+        </p>
+        <p class="sender-name">
+          <span data-hi>श्री राजकुमार जी ओला</span>
+          <span data-en>Shri Rajkumar Ji Ola</span>
+        </p>
         <p class="sender-info">
-          पुत्र स्व. श्री श्योमाल जी ओला<br>
-          निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>
-          जिला : झुन्झुनू (राज.)
+          <span data-hi>पुत्र स्व. श्री श्योमाल जी ओला<br>निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>जिला : झुन्झुनू (राज.)</span>
+          <span data-en>Son of Late Shri Shyomal Ji Ola<br>Resident: Kanika ki Dhani, Gudha Bawni<br>Dist: Jhunjhunu (Raj.)</span>
         </p>
         <p class="sender-phone">📞 9166284663 &nbsp;&nbsp; 📞 9001835290</p>
       </div>
     </div>
   </div>
 
-  <!-- SCHEDULE -->
+  <!-- ══ SCHEDULE CARD ══ -->
   <div class="card">
     <div class="card-corners"></div>
     <div class="inner">
-      <p class="sec-title">शुगुन क्षणिकाएं</p>
+      <p class="sec-title">
+        <span data-hi>शुगुन क्षणिकाएं</span>
+        <span data-en>Auspicious Events</span>
+      </p>
       <div class="sec-title-under"></div>
       <div class="events-grid">
-        <div class="ev"><span class="ev-icon">🪔</span><div class="ev-name">श्री गणेश पूजन</div><div class="ev-date">25 मार्च 2026, बुधवार</div><div class="ev-time">प्रातः 10:15 बजे</div></div>
-        <div class="ev"><span class="ev-icon">🌿</span><div class="ev-name">हल्द-हाथ (बान)</div><div class="ev-date">02 अप्रैल 2026, गुरुवार</div><div class="ev-time">सायः 04:15 बजे</div></div>
-        <div class="ev"><span class="ev-icon">🎶</span><div class="ev-name">महिला संगीत</div><div class="ev-date">04 अप्रैल 2026, शनिवार</div><div class="ev-time">सायंः 08:15 बजे</div></div>
-        <div class="ev"><span class="ev-icon">🍚</span><div class="ev-name">चाक-भात</div><div class="ev-date">06 अप्रैल 2026, सोमवार</div><div class="ev-time">दोप.: 01:15 बजे</div></div>
-        <div class="ev"><span class="ev-icon">🎺</span><div class="ev-name">बारात स्वागत</div><div class="ev-date">06 अप्रैल 2026, सोमवार</div><div class="ev-time">सायंः 06:15 बजे</div></div>
-        <div class="ev"><span class="ev-icon">💍</span><div class="ev-name">पाणिग्रहण संस्कार</div><div class="ev-date">06 अप्रैल 2026, सोमवार</div><div class="ev-time" style="font-style:italic;">रात्रि शुभलग्नानुसार</div></div>
+        <div class="ev">
+          <span class="ev-icon">🪔</span>
+          <div class="ev-name"><span data-hi>श्री गणेश पूजन</span><span data-en>Ganesh Pujan</span></div>
+          <div class="ev-date"><span data-hi>25 मार्च 2026, बुधवार</span><span data-en>25 March 2026, Wed</span></div>
+          <div class="ev-time"><span data-hi>प्रातः 10:15 बजे</span><span data-en>10:15 AM</span></div>
+        </div>
+        <div class="ev">
+          <span class="ev-icon">🌿</span>
+          <div class="ev-name"><span data-hi>हल्द-हाथ (बान)</span><span data-en>Haldi Ceremony</span></div>
+          <div class="ev-date"><span data-hi>02 अप्रैल 2026, गुरुवार</span><span data-en>02 April 2026, Thu</span></div>
+          <div class="ev-time"><span data-hi>सायः 04:15 बजे</span><span data-en>4:15 PM</span></div>
+        </div>
+        <div class="ev">
+          <span class="ev-icon">🎶</span>
+          <div class="ev-name"><span data-hi>महिला संगीत</span><span data-en>Ladies Sangeet</span></div>
+          <div class="ev-date"><span data-hi>04 अप्रैल 2026, शनिवार</span><span data-en>04 April 2026, Sat</span></div>
+          <div class="ev-time"><span data-hi>सायंः 08:15 बजे</span><span data-en>8:15 PM</span></div>
+        </div>
+        <div class="ev">
+          <span class="ev-icon">🍚</span>
+          <div class="ev-name"><span data-hi>चाक-भात</span><span data-en>Chak-Bhat Ritual</span></div>
+          <div class="ev-date"><span data-hi>06 अप्रैल 2026, सोमवार</span><span data-en>06 April 2026, Mon</span></div>
+          <div class="ev-time"><span data-hi>दोप.: 01:15 बजे</span><span data-en>1:15 PM</span></div>
+        </div>
+        <div class="ev">
+          <span class="ev-icon">🎺</span>
+          <div class="ev-name"><span data-hi>बारात स्वागत</span><span data-en>Baraat Welcome</span></div>
+          <div class="ev-date"><span data-hi>06 अप्रैल 2026, सोमवार</span><span data-en>06 April 2026, Mon</span></div>
+          <div class="ev-time"><span data-hi>सायंः 06:15 बजे</span><span data-en>6:15 PM</span></div>
+        </div>
+        <div class="ev">
+          <span class="ev-icon">💍</span>
+          <div class="ev-name"><span data-hi>पाणिग्रहण संस्कार</span><span data-en>Wedding Ceremony</span></div>
+          <div class="ev-date"><span data-hi>06 अप्रैल 2026, सोमवार</span><span data-en>06 April 2026, Mon</span></div>
+          <div class="ev-time" style="font-style:italic;"><span data-hi>रात्रि शुभलग्नानुसार</span><span data-en>As per auspicious muhurat</span></div>
+        </div>
       </div>
       <div class="vidai">
-        <div class="vidai-title">✈ &nbsp; विदाई</div>
-        <div class="vidai-date">07 अप्रैल 2026, मंगलवार</div>
-        <div class="vidai-time">प्रात कालः 04:15 बजे</div>
+        <div class="vidai-title">
+           &nbsp;<span data-hi>विदाई</span><span data-en>Bride's Farewell</span>
+        </div>
+        <div class="vidai-date">
+          <span data-hi>07 अप्रैल 2026, मंगलवार</span>
+          <span data-en>07 April 2026, Tuesday</span>
+        </div>
+        <div class="vidai-time">
+          <span data-hi>प्रात कालः 04:15 बजे</span>
+          <span data-en>4:15 AM</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- INVITATION -->
+  <!-- ══ INVITATION CARD ══ -->
   <div class="card">
     <div class="card-corners"></div>
     <div class="inner">
-      <p class="mantra" style="text-align:center;">।। श्री गणेशाय नमः ।।</p>
-      <div class="gold-rule" style="margin:16px 0 20px;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
-      <div class="shloka">
-        "वकतुण्ड महाकाय, सूर्यकोटि समप्रभः।<br>
-        निर्विघ्नं कुरुमे देव, सर्वकार्येषु सर्वदा ॥"
-      </div>
-      <p style="font-size:clamp(.88rem,2.5vw,1rem);color:var(--text-mid);margin-bottom:24px;line-height:1.9;">
-        ईश्वर की असीम अनुकंपा से हमारे परिवार में शुभ अवसर आया है, प्रसंग है हमारे लाड़ली के परिणय बंधन का...
+      <p class="mantra" style="text-align:center;">
+        <span data-hi>।। श्री गणेशाय नमः ।।</span>
+        <span data-en>॥ Shri Ganeshaya Namah ॥</span>
       </p>
+      <div class="gold-rule" style="margin:16px 0 20px;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
+
+      <div class="shloka">
+        <span data-hi>"वकतुण्ड महाकाय, सूर्यकोटि समप्रभः।<br>निर्विघ्नं कुरुमे देव, सर्वकार्येषु सर्वदा ॥"</span>
+        <span data-en>"O Lord Ganesha, of large form and radiance of a million suns,<br>please make all my endeavours free of obstacles, always."</span>
+      </div>
+
+      <p style="font-size:clamp(.88rem,2.5vw,1rem);color:var(--text-mid);margin-bottom:24px;line-height:1.9;">
+        <span data-hi>ईश्वर की असीम अनुकंपा से हमारे परिवार में शुभ अवसर आया है, प्रसंग है हमारे लाड़ली के परिणय बंधन का...</span>
+        <span data-en>By the infinite grace of God, a joyous occasion has come to our family — the wedding of our beloved daughter...</span>
+      </p>
+
       <div class="profiles-grid">
         <div class="profile-card">
-          <p class="profile-name">सौ. का सुनिता</p>
+          <p class="profile-name">
+            <span data-hi>सौ. का सुनिता</span>
+            <span data-en> Sunita</span>
+          </p>
           <div class="profile-line">
-            <p><b>सुपौत्री :</b> स्व. श्रीमती सावित्री देवी एवं स्व. श्री रामेश्वर लाल</p>
-            <p><b>सुपुत्री :</b> श्रीमती ग्यारसी देवी एवं श्री महेश जी</p>
-            <p class="profile-res">निवासी : देल्सर कलां</p>
+            <p><b><span data-hi>सुपौत्री :</span><span data-en>Grand-daughter of :</span></b> <span data-hi>स्व. श्रीमती सावित्री देवी एवं स्व. श्री रामेश्वर लाल</span><span data-en>Late Smt. Savitri Devi &amp; Late Shri Rameshwar Lal</span></p>
+            <p><b><span data-hi>सुपुत्री :</span><span data-en>Daughter of :</span></b> <span data-hi>श्रीमती ग्यारसी देवी एवं श्री महेश जी</span><span data-en>Smt. Gyarsi Devi &amp; Shri Mahesh Ji</span></p>
+            <p class="profile-res"><span data-hi>निवासी : देल्सर कलां</span><span data-en>Resident: Delsar Kalan</span></p>
           </div>
           <div class="bhaanji">
-            <span class="bl">भान्जी :</span>
-            <span class="bv"> श्रीमती सरोज देवी एवं श्री राजकुमार जी ओला</span>
-            <p style="font-size:.78rem;color:var(--text-light);margin-top:4px;">निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी</p>
+            <span class="bl"><span data-hi>भान्जी :</span><span data-en>Niece of :</span></span>
+            <span class="bv"> <span data-hi>श्रीमती सरोज देवी एवं श्री राजकुमार जी ओला</span><span data-en>Smt. Saroj Devi &amp; Shri Rajkumar Ji Ola</span></span>
+            <p style="font-size:.78rem;color:var(--text-light);margin-top:4px;"><span data-hi>निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी</span><span data-en>Resident: Kanika ki Dhani, Gudhabawni</span></p>
           </div>
         </div>
         <div class="profile-card">
-          <p class="profile-name">चि. नवीन</p>
+          <p class="profile-name">
+            <span data-hi>चि. नवीन</span>
+            <span data-en> Naveen</span>
+          </p>
           <div class="profile-line">
-            <p><b>सुपौत्र :</b> स्व. श्रीमती मन्नी देवी एवं स्व. श्री सुरजाराम जी सांरवणियां</p>
-            <p><b>सुपुत्र :</b> श्रीमती चान्दकोरी देवी एवं श्री मोतीराम जी सांरवणियां</p>
-            <p class="profile-res">निवासी : बाय (नवलगढ़)</p>
+            <p><b><span data-hi>सुपौत्र :</span><span data-en>Grand-son of :</span></b> <span data-hi>स्व. श्रीमती मन्नी देवी एवं स्व. श्री सुरजाराम जी सांरवणियां</span><span data-en>Late Smt. Manni Devi &amp; Late Shri Surajaram Ji Sanrwaniya</span></p>
+            <p><b><span data-hi>सुपुत्र :</span><span data-en>Son of :</span></b> <span data-hi>श्रीमती चान्दकोरी देवी एवं श्री मोतीराम जी सांरवणियां</span><span data-en>Smt. Chandkori Devi &amp; Shri Motiram Ji Sanrwaniya</span></p>
+            <p class="profile-res"><span data-hi>निवासी : बाय (नवलगढ़)</span><span data-en>Resident: Bay (Nawalgarh)</span></p>
           </div>
         </div>
       </div>
+
       <div class="barat-note">
-        नोट:- बारात दिनांक <span>06 अप्रैल 2026 सोमवार</span> को <span>बाय (नवलगढ़)</span> से <span>काणिका की ढ़ाणी, गुढ़ाबावनी</span> पधारेगी।
+        <span data-hi>नोट:- बारात दिनांक <span>06 अप्रैल 2026 सोमवार</span> को <span>बाय (नवलगढ़)</span> से <span>काणिका की ढ़ाणी, गुढ़ाबावनी</span> पधारेगी।</span>
+        <span data-en>Note: The Baraat will depart from <span>Bai (Nawalgarh)</span> and arrive at <span>Kanika ki Dhani, Gudhabawni</span> on <span>06 April 2026 (Monday).</span></span>
       </div>
+
       <div class="gold-rule" style="margin:24px 0 18px;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
-      <p style="font-family:'Great Vibes',cursive;font-size:clamp(1.7rem,5vw,2.2rem);color:var(--maroon);text-align:center;">।। मंगल परिणयोत्सव ।।</p>
+
+      <p style="font-family:'Great Vibes',cursive;font-size:clamp(1.7rem,5vw,2.2rem);color:var(--maroon);text-align:center;">
+        <span data-hi>।। मंगल परिणयोत्सव ।।</span>
+        <span data-en>Mangal Parinayotsav</span>
+      </p>
       <p style="text-align:center;color:var(--text-mid);font-size:clamp(.85rem,2.5vw,.95rem);margin-top:10px;line-height:2;">
-        की सुमधुर बेला पर आपको सादर आमंत्रित करते हैं।<br>
-        कृपया इस शुभ अवसर पर वर-वधू को शुभ आशीर्वाद प्रदान कर हमें अनुग्रहित करें।
+        <span data-hi>की सुमधुर बेला पर आपको सादर आमंत्रित करते हैं।<br>कृपया इस शुभ अवसर पर वर-वधू को शुभ आशीर्वाद प्रदान कर हमें अनुग्रहित करें।</span>
+        <span data-en>We cordially invite you to grace this auspicious occasion.<br>Please bless the bride and groom and honour us with your presence.</span>
       </p>
     </div>
   </div>
 
-  <!-- FAMILY -->
+  <!-- ══ FAMILY CARD ══ -->
   <div class="card family-card">
     <div class="card-corners"></div>
     <div class="inner">
-      <p class="sec-title">परिवारजन</p>
+      <p class="sec-title">
+        <span data-hi>परिवारजन</span>
+        <span data-en>Family Members</span>
+      </p>
       <div class="sec-title-under"></div>
+
       <div class="fam-grid">
         <div>
-          <p class="fam-sec-title">मौसीजी-मौसाजी</p>
+          <p class="fam-sec-title"><span data-hi>मौसीजी-मौसाजी</span><span data-en>Maternal Aunts &amp; Uncles</span></p>
           <ul class="fam-list">
-            <li>श्रीमती सुमन देवी-श्री महेन्द्र जी मावलिया <em style="font-size:.78rem;">(सुबे. मेजर)</em></li>
-            <li>श्रीमती सरिता देवी-श्री महिपाल जी मावलिया</li>
-            <li>श्रीमती अनिता देवी-श्री महिपाल जी औलखा</li>
+            <li><span data-hi>श्रीमती सुमन देवी-श्री महेन्द्र जी मावलिया <em style="font-size:.78rem;">(सुबे. मेजर)</em></span><span data-en>Smt. Suman Devi – Shri Mahendra Ji Mawliya <em style="font-size:.78rem;">(Sub. Major)</em></span></li>
+            <li><span data-hi>श्रीमती सरिता देवी-श्री महिपाल जी मावलिया</span><span data-en>Smt. Sarita Devi – Shri Mahipal Ji Mawliya</span></li>
+            <li><span data-hi>श्रीमती अनिता देवी-श्री महिपाल जी औलखा</span><span data-en>Smt. Anita Devi – Shri Mahipal Ji Aulkha</span></li>
           </ul>
         </div>
         <div>
-          <p class="fam-sec-title">बुआजी-फुफाजी</p>
+          <p class="fam-sec-title"><span data-hi>बुआजी-फुफाजी</span><span data-en>Paternal Aunts &amp; Uncles</span></p>
           <ul class="fam-list">
-            <li>मोहनी-श्री जयनारायण जी</li>
-            <li>विमला-स्व. श्री नेमीचन्द जी</li>
+            <li><span data-hi>मोहनी-श्री जयनारायण जी</span><span data-en>Mohni – Shri Jaynarayan Ji</span></li>
+            <li><span data-hi>विमला-स्व. श्री नेमीचन्द जी</span><span data-en>Vimla – Late Shri Nemichand Ji</span></li>
           </ul>
         </div>
       </div>
-      <p class="fam-sec-title">ननिहाल पक्ष</p>
+
+      <p class="fam-sec-title"><span data-hi>ननिहाल पक्ष</span><span data-en>Maternal Family</span></p>
       <div class="naanihal-box">
         <ul class="fam-list">
-          <li>श्रीमती धापा देवी-स्व. श्री गणेशाराम जी ओला</li>
-          <li>श्रीमती भागोती देवी-स्व. श्री श्योमाल जी ओला</li>
-          <li>स्व. श्रीमती चनो देवी-मनीराम जी ओला</li>
-          <li>श्रीमती बनारसी देवी-इन्द्राज जी ओला</li>
-          <li>स्व. श्री विद्याधर जी ओला <em style="color:var(--text-light);">(नानीजी-नानाजी)</em></li>
+          <li><span data-hi>श्रीमती धापा देवी-स्व. श्री गणेशाराम जी ओला</span><span data-en>Smt. Dhapa Devi – Late Shri Ganesharam Ji Ola</span></li>
+          <li><span data-hi>श्रीमती भागोती देवी-स्व. श्री श्योमाल जी ओला</span><span data-en>Smt. Bhagoti Devi – Late Shri Shyomal Ji Ola</span></li>
+          <li><span data-hi>स्व. श्रीमती चनो देवी-मनीराम जी ओला</span><span data-en>Late Smt. Chano Devi – Maniram Ji Ola</span></li>
+          <li><span data-hi>श्रीमती बनारसी देवी-इन्द्राज जी ओला</span><span data-en>Smt. Banarsi Devi – Indraj Ji Ola</span></li>
+          <li><span data-hi>स्व. श्री विद्याधर जी ओला <em style="color:var(--text-light);">(नानीजी-नानाजी)</em></span><span data-en>Late Shri Vidyadhar Ji Ola <em style="color:var(--text-light);">(Maternal Grandparents)</em></span></li>
         </ul>
         <div style="margin-top:12px;padding-top:12px;border-top:1px dashed rgba(180,130,20,.3);">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:clamp(.78rem,2.2vw,.88rem);font-style:italic;color:var(--text-mid);">
-            <p>श्रीमती अमृता देवी - श्री कपिल जी ओला</p>
-            <p>श्रीमती सुमन देवी - श्री सतवीर जी ओला <em>(सुबेदार)</em></p>
-            <p>श्रीमती सरोज देवी - श्री रविन्द्र जी ओला <em>(Ex. Army)</em></p>
-            <p style="color:var(--maroon);font-weight:700;font-style:normal;">मामीजी - मामाजी</p>
+            <p><span data-hi>श्रीमती अमृता देवी - श्री कपिल जी ओला</span><span data-en>Smt. Amrita Devi – Shri Kapil Ji Ola</span></p>
+            <p><span data-hi>श्रीमती सुमन देवी - श्री सतवीर जी ओला <em>(सुबेदार)</em></span><span data-en>Smt. Suman Devi – Shri Satveer Ji Ola <em>(Subedar)</em></span></p>
+            <p><span data-hi>श्रीमती सरोज देवी - श्री रविन्द्र जी ओला <em>(Ex. Army)</em></span><span data-en>Smt. Saroj Devi – Shri Ravindra Ji Ola <em>(Ex. Army)</em></span></p>
+            <p style="color:var(--maroon);font-weight:700;font-style:normal;"><span data-hi>मामीजी - मामाजी</span><span data-en>Maternal Uncles &amp; Aunts</span></p>
           </div>
-          <p style="text-align:center;font-size:.75rem;color:var(--text-light);margin-top:8px;">( निवासी - काणिका का ढ़ाणी, गुढ़ा बावनी )</p>
+          <p style="text-align:center;font-size:.75rem;color:var(--text-light);margin-top:8px;">
+            <span data-hi>( निवासी - काणिका का ढ़ाणी, गुढ़ा बावनी )</span>
+            <span data-en>( Resident – Kanika ka Dhani, Gudha Bawni )</span>
+          </p>
         </div>
       </div>
+
       <div class="siblings">
-        <p class="sib-title">बहन - भाई</p>
+        <p class="sib-title">
+          <span data-hi>बहन - भाई</span>
+          <span data-en>Sisters &amp; Brothers</span>
+        </p>
         <div class="sib-names">
-          <span class="sib-name">पूजा</span>
-          <span class="sib-name">हर्षिता</span>
-          <span class="sib-name">नेहा</span>
-          <span class="sib-name">स्नेहा</span>
-          <span class="sib-name">युवराज सिंह</span>
-          <span class="sib-name hl">दिनेश</span>
-          <span class="sib-name">अंकित कुमार</span>
-          <span class="sib-name">अनुज</span>
+          <span class="sib-name"><span data-hi>पूजा</span><span data-en>Pooja</span></span>
+          <span class="sib-name"><span data-hi>हर्षिता</span><span data-en>Harshita</span></span>
+          <span class="sib-name"><span data-hi>नेहा</span><span data-en>Neha</span></span>
+          <span class="sib-name"><span data-hi>स्नेहा</span><span data-en>Sneha</span></span>
+          <span class="sib-name"><span data-hi>युवराज सिंह</span><span data-en>Yuvraj Singh</span></span>
+          <span class="sib-name hl"><span data-hi>दिनेश</span><span data-en>Dinesh</span></span>
+          <span class="sib-name"><span data-hi>अंकित कुमार</span><span data-en>Ankit Kumar</span></span>
+          <span class="sib-name"><span data-hi>अनुज</span><span data-en>Anuj</span></span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FINAL -->
+  <!-- ══ FINAL CARD ══ -->
   <div class="card final-card">
     <div class="card-corners"></div>
     <div class="inner" style="text-align:center;">
-      <p class="mantra">।। श्री गणेशाय नमः ।।</p>
+      <p class="mantra">
+        <span data-hi>।। श्री गणेशाय नमः ।।</span>
+        <span data-en>॥ Shri Ganeshaya Namah ॥</span>
+      </p>
       <div class="gold-rule" style="margin:14px 0 20px;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
-      <h2 class="family-name">ओला परिवार</h2>
-      <p class="family-tag">आपका हार्दिक अभिनन्दन करता है।</p>
+
+      <h2 class="family-name">
+        <span data-hi>ओला परिवार</span>
+        <span data-en>Ola Family</span>
+      </h2>
+      <p class="family-tag">
+        <span data-hi>आपका हार्दिक अभिनन्दन करता है।</span>
+        <span data-en>Warmly welcomes you.</span>
+      </p>
+
       <div class="final-profiles">
         <div class="fp-box" style="padding-top:28px;">
-          <h4>उत्तराकांक्षीः</h4>
-          <p class="fp-name">श्री मनीराम जी ओला</p>
+          <h4>
+            <span data-hi>उत्तराकांक्षीः</span>
+            <span data-en>Host :</span>
+          </h4>
+          <p class="fp-name">
+            <span data-hi>श्री मनीराम जी ओला</span>
+            <span data-en>Shri Maniram Ji Ola</span>
+          </p>
           <p class="fp-info">
-            पुत्र स्व. श्री सुखदेवाराम जी ओला<br>
-            निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>
-            जिला : झुन्झुनू (राज.)
+            <span data-hi>पुत्र स्व. श्री सुखदेवाराम जी ओला<br>निवासी : काणिका की ढ़ाणी, गुढ़ाबावनी<br>जिला : झुन्झुनू (राज.)</span>
+            <span data-en>Son of Late Shri Sukhdevaram Ji Ola<br>Resident: Kanika ki Dhani, Gudha Bawni<br>Dist: Jhunjhunu (Raj.)</span>
           </p>
         </div>
         <div class="fp-box" style="padding-top:28px;display:flex;flex-direction:column;justify-content:center;text-align:center;">
-          <h4>दर्शनाभिलाषीः</h4>
+          <h4>
+            <span data-hi>दर्शनाभिलाषीः</span>
+            <span data-en>With Regards :</span>
+          </h4>
           <p class="fp-name" style="font-style:italic;color:var(--maroon);margin-top:14px;font-size:clamp(1rem,3.5vw,1.2rem);">
-            समस्त ओला परिवार<br>एवं मित्रगण।
+            <span data-hi>समस्त ओला परिवार<br>एवं मित्रगण।</span>
+            <span data-en>The entire Ola Family<br>&amp; Friends.</span>
           </p>
         </div>
       </div>
+
       <a href="https://maps.app.goo.gl/eDAxSCxbDGTMkCJh6" target="_blank" class="map-btn">
-        📍 &nbsp; शादी का स्थान देखें &nbsp; (Google Maps)
+        📍 &nbsp;
+        <span data-hi>शादी का स्थान देखें &nbsp; (Google Maps)</span>
+        <span data-en>View Wedding Venue &nbsp; (Google Maps)</span>
       </a>
+
       <div class="gold-rule" style="margin:28px 0 16px;"><div class="rule-gem-sm"></div><div class="rule-gem"></div><div class="rule-gem-sm"></div></div>
       <p class="closing">With Blessings &amp; Joy ✦</p>
     </div>
   </div>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
-// Hamburger menu
-const hamBtn=document.getElementById('hamBtn');
-const drawer=document.getElementById('drawer');
-const overlay=document.getElementById('overlay');
-
-function toggleMenu(force){
-  const open = force !== undefined ? force : !drawer.classList.contains('open');
-  drawer.classList.toggle('open',open);
-  overlay.classList.toggle('show',open);
-  hamBtn.classList.toggle('open',open);
+// ── Language toggle ──────────────────────────────
+function setLang(lang) {
+  document.body.className = lang;
+  document.getElementById('btnHi').classList.toggle('active', lang === 'hi');
+  document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+  // font family swap
+  document.body.style.fontFamily = lang === 'en'
+    ? "'Cormorant Garamond', serif"
+    : "'Tiro Devanagari Hindi', serif";
 }
 
-hamBtn.addEventListener('click',()=>toggleMenu());
-overlay.addEventListener('click',()=>toggleMenu(false));
+// ── Hamburger ────────────────────────────────────
+const hamBtn  = document.getElementById('hamBtn');
+const drawer  = document.getElementById('drawer');
+const overlay = document.getElementById('overlay');
 
-// Close on drawer link tap
-drawer.querySelectorAll('a').forEach(a=>{
-  a.addEventListener('click',()=>setTimeout(()=>toggleMenu(false),150));
+function toggleMenu(force) {
+  const open = force !== undefined ? force : !drawer.classList.contains('open');
+  drawer.classList.toggle('open', open);
+  overlay.classList.toggle('show', open);
+  hamBtn.classList.toggle('open', open);
+}
+hamBtn.addEventListener('click', () => toggleMenu());
+overlay.addEventListener('click', () => toggleMenu(false));
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => setTimeout(() => toggleMenu(false), 150));
 });
 
-// Falling petals
-const pc=document.getElementById('petals');
-const sym=['🌸','🌺','✿','❀','🌼','🌷'];
-for(let i=0;i<20;i++){
-  const p=document.createElement('div');
-  p.className='petal';
-  p.textContent=sym[i%sym.length];
-  p.style.cssText=`left:${Math.random()*100}%;font-size:${.55+Math.random()*.85}rem;animation-duration:${9+Math.random()*14}s;animation-delay:${Math.random()*12}s;opacity:${.12+Math.random()*.22};`;
+// ── Petals ───────────────────────────────────────
+const pc  = document.getElementById('petals');
+const sym = ['🌸','🌺','✿','❀','🌼','🌷'];
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.textContent = sym[i % sym.length];
+  p.style.cssText = `left:${Math.random()*100}%;font-size:${.55+Math.random()*.85}rem;animation-duration:${9+Math.random()*14}s;animation-delay:${Math.random()*12}s;opacity:${.12+Math.random()*.22};`;
   pc.appendChild(p);
 }
 </script>
